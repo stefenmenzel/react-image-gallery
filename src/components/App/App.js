@@ -26,6 +26,10 @@ class App extends Component {
     })
   }
 
+  addLike = (idToLike) => {
+
+  }
+
   render() {
     return (
       <div className="App">
