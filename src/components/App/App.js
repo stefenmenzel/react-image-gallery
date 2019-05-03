@@ -10,10 +10,10 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.getSongs();
+    this.getPics();
   }
 
-  getSongs = () => {
+  getPics = () => {
 
     axios.get('/gallery')
     .then((response) => {
@@ -27,7 +27,13 @@ class App extends Component {
   }
 
   addLike = (idToLike) => {
-
+    axios.put(`/gallery/like/${idToLike}`)
+    .then((response) => {
+      console.log('response form PUT request:', response);
+      this.getPics();
+    }).catch((error) => {
+      console.log('error in PUT request:', error);
+    })
   }
 
   render() {
@@ -37,7 +43,7 @@ class App extends Component {
           <h1 className="App-title">Gallery of my life</h1>
         </header>
         <br/>
-        <GalleryList gallery={this.state.gallery} />
+        <GalleryList addLike={this.addLike} gallery={this.state.gallery} />
       </div>
     );
   }
