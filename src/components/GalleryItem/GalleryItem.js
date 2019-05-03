@@ -8,10 +8,10 @@ class GalleryItem extends Component{
 
     render(){
         return(
-            <div>
-                <img src={this.props.galleryItem.path} alt=''></img>
-                <button onClick={() => this.addLike(this.props.galleryItem.id)}>LOVE IT!</button>
-                <p>Likes: {this.props.galleryItem.likes}</p>
+            <div className="gItem" >
+                <img className="gImage" src={this.props.galleryItem.path} alt=''></img>
+                <button className="gButton" onClick={() => this.addLike(this.props.galleryItem.id)}>LOVE IT!</button>
+                <p className="gP">Likes: {this.props.galleryItem.likes}</p>
             </div>
         )
     }

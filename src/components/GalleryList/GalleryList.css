@@ -1,0 +1,23 @@
+.gItem{
+    display: inline-block;
+    /* height:150px;
+    width: 100px; */
+}
+
+.gImage{
+    height: 100px;
+    width: 100px;
+}
+
+.gButton{
+    display: block;
+    margin:auto;
+}
+
+.gP{
+    display: block;
+}
+
+.gallery{
+    display: inline-block;
+}
