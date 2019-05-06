@@ -22,17 +22,6 @@ router.put('/like/:id', (req, res) => {
     });
 })
 
-// router.put('/like/:id', (req, res) => {
-//     console.log(req.params);
-//     const galleryId = req.params.id;
-//     for(const galleryItem of galleryItems) {
-//         if(galleryItem.id == galleryId) {
-//             galleryItem.likes += 1;
-//         }
-//     }
-//     res.sendStatus(200);
-// }); // END PUT Route
-
 // GET Route
 router.get('/', (req, res) => {
     let sqlQuery = `
@@ -48,8 +37,20 @@ router.get('/', (req, res) => {
     });
 })
 
-// router.get('/', (req, res) => {
-//     res.send(galleryItems);
-// }); // END GET Route
+router.post('/', (req, res) => {
+    let picToSend = req.body;
+    let sqlQuery = `
+        INSERT INTO "images" ("path", "description", "likes")
+        VALUES ($1, $2, $3);
+    `
+    pool.query(sqlQuery, [picToSend.path, picToSend.description, picToSend.likes])
+    .then((result) => {
+        console.log('response from POST request:', result);
+        res.sendStatus(201);
+    }).catch((error) => {
+        console.log('error in POST route:', error);
+        res.sendStatus(500);
+    });
+})
 
 module.exports = router;

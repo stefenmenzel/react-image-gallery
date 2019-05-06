@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import GalleryList from '../GalleryList/GalleryList';
+import GalleryList from '../GalleryList/GalleryList.js';
+import GalleryForm from '../GalleryForm/GalleryForm.js';
 
 class App extends Component {
 
@@ -26,6 +27,16 @@ class App extends Component {
     })
   }
 
+  addPhoto = (newPhoto) => {
+    axios.post('/gallery', newPhoto)
+    .then((response) => {
+      console.log('response from POST request:', response);
+      this.getPics();
+    }).catch((error) => {
+      console.log('Error in POST request:', error);
+    });
+  }
+
   addLike = (idToLike) => {
     axios.put(`/gallery/like/${idToLike}`)
     .then((response) => {
@@ -43,6 +54,7 @@ class App extends Component {
           <h1 className="App-title">Gallery of my life</h1>
         </header>
         <br/>
+        <GalleryForm addPhoto={this.addPhoto} />
         <GalleryList addLike={this.addLike} gallery={this.state.gallery} />
       </div>
     );
