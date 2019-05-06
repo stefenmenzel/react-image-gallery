@@ -22,8 +22,8 @@
 }
 
 .gButton{
-    display: block;
-    margin:auto;
+    display: inline-block;
+    margin: 2px;    
 }
 
 .gP{

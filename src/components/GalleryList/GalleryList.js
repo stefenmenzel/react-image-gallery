@@ -8,7 +8,7 @@ class GalleryList extends Component{
         return(
             <div className="gallery">                
                 {this.props.gallery.map(image => {
-                    return <GalleryItem key={image.id} className="gItem" addLike={this.props.addLike} galleryItem={image} />
+                    return <GalleryItem key={image.id} className="gItem" deletePhoto={this.props.deletePhoto} addLike={this.props.addLike} galleryItem={image} />
                 })}
                 {/* <img src="images/goat_small.jpg" /> */}
             </div>
