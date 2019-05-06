@@ -37,6 +37,22 @@ router.get('/', (req, res) => {
     });
 })
 
+router.delete('/delete/:id', (req, res) => {
+    let sqlQuery = `
+        DELETE FROM "images"
+        WHERE "id" = $1;
+    `
+
+    pool.query(sqlQuery, [req.params.id])
+    .then((result) => {
+        console.log("result from DELETE route:", result);
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log("Error in DELETE route:", error);
+        res.sendStatus(500);
+    });
+})
+
 router.post('/', (req, res) => {
     let picToSend = req.body;
     let sqlQuery = `

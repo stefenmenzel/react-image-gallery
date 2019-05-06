@@ -10,6 +10,10 @@ class GalleryItem extends Component {
         this.props.addLike(idToLike);
     }
 
+    deletePhoto = (idToDelete) => {        
+        this.props.deletePhoto(idToDelete);
+    }
+
     setClicked = () => {
         this.setState({
             isClicked: !this.state.isClicked
@@ -32,7 +36,10 @@ class GalleryItem extends Component {
         return (
             <div className="gItem" >
                 {this.setImageOrText()}
-                <button className="gButton" onClick={() => this.addLike(this.props.galleryItem.id)}>LOVE IT!</button>
+                <div>
+                    <button className="gButton" onClick={() => this.addLike(this.props.galleryItem.id)}>LOVE IT!</button>
+                    <button className="gButton" onClick={() => this.deletePhoto(this.props.galleryItem.id)}>Delete Image</button>
+                </div>                
                 <p className="gP">Likes: {this.props.galleryItem.likes}</p>
             </div>
         )
